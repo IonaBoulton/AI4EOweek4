@@ -66,4 +66,45 @@ Unsupervised learning methods are used when labels are not available in the data
   <img src="UnsupervisedLearning.png" alt="Unsupervised Learning Overview" width="600">
 </p>
 
+## Gaussian Mixture Modeling (GMM) of Altimetry Echoes
 
+The Gaussian Mixture Model (GMM) is an unsupervised learning algorithm used to identify clusters in data when labels are not available. Unlike K-Means, which assigns points to the nearest cluster center, GMM assumes that each cluster follows a Gaussian (normal) distribution. Each data point has a probabilistic membership in every cluster, which allows GMM to model overlapping clusters and clusters of different shapes and sizes.
+In this assignment, GMM is applied to altimetry echoes to classify sea ice and leads based on features derived from the waveform.
+
+## Why GMM
+* Flexible: Can handle clusters with different shapes, sizes, and orientations.
+* Probabilistic: Provides the likelihood that a point belongs to each cluster.
+* More appropriate than K-Means for altimetry echoes, where clusters are not perfectly spherical.
+* Other unsupervised alternatives could include DBSCAN or hierarchical clustering, but GMM offers the best trade-off between interpretability and performance for this dataset.
+
+## Features Used for Clustering
+  ```sh
+ sig_0
+  ```
+  ```sh
+  PP
+  ```
+  ```sh
+ SSD
+  ```
+## GMM Basic Code
+```sh
+ from sklearn.mixture import GaussianMixture
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data
+X = np.random.rand(100, 2)
+
+# GMM model
+gmm = GaussianMixture(n_components=3)
+gmm.fit(X)
+y_gmm = gmm.predict(X)
+
+# Plotting
+plt.scatter(X[:, 0], X[:, 1], c=y_gmm, cmap='viridis')
+centers = gmm.means_
+plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
+plt.title('Gaussian Mixture Model')
+plt.show()
+```
