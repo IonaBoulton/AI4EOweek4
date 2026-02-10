@@ -216,3 +216,46 @@ plt.show()
 
 ### Interpretation:
 The raw waveform comparison demonstrates that sea ice echoes are more chaotic, while lead echoes show more regularity, which aligns with the physical differences in surface structure between sea ice and open water.
+
+### Mean and standard deviation
+After examining the raw waveforms, we calculate the mean and standard deviation for each cluster. This allows us to summarize the general shape of the echoes and quantify the variability within each category
+```sh
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Compute mean and standard deviation for Sea Ice and Leads
+mean_ice = np.mean(waves_cleaned[clusters_gmm==0], axis=0)
+std_ice = np.std(waves_cleaned[clusters_gmm==0], axis=0)
+
+mean_lead = np.mean(waves_cleaned[clusters_gmm==1], axis=0)
+std_lead = np.std(waves_cleaned[clusters_gmm==1], axis=0)
+
+# --- Plot Means ---
+plt.figure(figsize=(10,5))
+plt.plot(mean_ice, label='Sea Ice', color='blue')
+plt.plot(mean_lead, label='Lead', color='orange')
+plt.title('Mean Echoes for Sea Ice and Lead')
+plt.xlabel('Radar Bin')
+plt.ylabel('Power')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# --- Plot Standard Deviations ---
+plt.figure(figsize=(10,5))
+plt.plot(std_ice, label='Sea Ice', color='blue')
+plt.plot(std_lead, label='Lead', color='orange')
+plt.title('Standard Deviation of Echoes for Sea Ice and Lead')
+plt.xlabel('Radar Bin')
+plt.ylabel('Power')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+<p align="center">
+  <img src="Mean.png" alt="Mean" width="600">
+</p>
+
+<p align="center">
+  <img src="SD.png" alt="SD" width="600">
+</p>
