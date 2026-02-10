@@ -53,9 +53,9 @@ Altimetry satellites, such as Sentinel-3, send radar signals toward the Earth's 
 
 By analyzing these echoes with unsupervised learning methods like the Gaussian Mixture Model (GMM), we can classify surface types, compute their average echo shapes and standard deviations, and compare the results to ESA official classifications. This provides a robust method for monitoring polar environments using satellite altimetry.
 
-Below are links to European Space Agency (ESA) pages on Sentinel-3 and Copernicus, as well as further information on the importance of understanding sea ice leads
-* (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Introducing_Copernicus)
-* (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-3/Introducing_Sentinel-3)
-* (https://www.dkrz.de/en/communication/galerie/Vis/icesheet/sea-ice-leads)
+Below are links to European Space Agency (ESA) pages on Copernicus and Sentinel-3, as well as further information on the importance of understanding sea ice leads
+* Copernicus - (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Introducing_Copernicus)
+* Sentinel-3 - (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-3/Introducing_Sentinel-3)
+* Sea ice Leads - (https://www.dkrz.de/en/communication/galerie/Vis/icesheet/sea-ice-leads)
 
 
