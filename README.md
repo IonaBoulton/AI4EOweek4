@@ -44,3 +44,18 @@ The classification workflow will build upon the provided notebook Chapter1_Unsup
   scipy.interpolate.interp1d
   ```
   Interpolating waveform echoes for alignment and averaging
+
+  ## Context
+
+Distinguishing sea ice from leads is important for several reasons: monitoring changes in polar ice coverage for climate research, improving navigation safety in polar regions, and supporting environmental and ecological studies. Understanding where open water occurs within sea ice helps scientists track melting, energy exchange between the ocean and atmosphere, and habitat availability for marine life.
+
+Altimetry satellites, such as Sentinel-3, send radar signals toward the Earth's surface and record the reflected signals, known as echoes. These echoes carry detailed information about surface properties: differences in material, roughness, and elevation alter the shape and strength of the returned signal, making it possible to distinguish between surfaces like sea ice and leads.
+
+By analyzing these echoes with unsupervised learning methods like the Gaussian Mixture Model (GMM), we can classify surface types, compute their average echo shapes and standard deviations, and compare the results to ESA official classifications. This provides a robust method for monitoring polar environments using satellite altimetry.
+
+Below are links to European Space Agency (ESA) pages on Sentinel-3 and Copernicus, as well as further information on the importance of understanding sea ice leads
+* (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Introducing_Copernicus)
+* (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-3/Introducing_Sentinel-3)
+* (https://www.dkrz.de/en/communication/galerie/Vis/icesheet/sea-ice-leads)
+
+
