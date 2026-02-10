@@ -105,12 +105,6 @@ plt.show()
 This visualization shows the results of a Gaussian Mixture Model (GMM) applied to a 2D dataset. Each colored cluster represents a Gaussian component identified by the model, where points are grouped based on probabilistic membership rather than hard boundaries. The larger grey markers indicate the estimated cluster means, highlighting the center of each Gaussian distribution.
 
 #### Features Used for Clustering
-  `sh
- sig_0
-  `
-  `sh
-  PP
-  `
-  `sh
- SSD
-  `
+`sig_0` | Normalized backscatter amplitude, indicative of surface reflectivity. |
+| `PP`    | Peakiness of the waveform, reflecting surface roughness. |
+| `SSD`   | Stack standard deviation, representing variability across repeated echoes. |
