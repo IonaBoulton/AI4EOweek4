@@ -126,3 +126,40 @@ To evaluate and interpret the Gaussian Mixture Model (GMM) clustering results, s
 </p>
 
 These plots show that the purple cluster forms a distinct grouping, clearly separated from the yellow cluster across all feature combinations. This separation indicates that the GMM has successfully identified statistically and physically different surface scattering behaviours. The distinct cluster suggests differences in surface reflectivity (`sig_0`), roughness (`PP`), and signal variability (`SSD`), implying that the model is capturing meaningful variation rather than arbitrary groupings.
+
+## Echo Classification: Leads vs Sea Ice
+
+This section classifies radar echoes into leads (open water) and sea ice, then evaluates the classification by comparing it with the ESA official dataset. The analysis also computes the average waveform shape and standard deviation for each class to characterize their physical differences.
+
+#### Classification code
+1. Load Echo Data
+The first step is loading the SAR echo data from the provided file path. The data is stored in a NetCDF file
+```sh
+path = '/content/drive/MyDrive/Week 4/'
+SAR_file = 'S3A_SR_2_LAN_SI_20190307T005808_20190307T012503_20230527T225016_1614_042_131______LN3_R_NT_005.SEN3'
+SAR_data = Dataset(path + SAR_file + '/enhanced_measurement.nc')
+```
+
+2. Model Setup and Fitting
+We first classify the echoes into two categories (leads and sea ice - n_component=2) using a Gaussian Mixture Model (GMM). The workflow is as follows:
+```sh
+gmm = GaussianMixture(n_components=2, random_state=0)
+gmm.fit(data_cleaned)
+```
+ 3. Cluster Prediction
+Each echo was assigned to a cluster (0 or 1) based on the GMM’s learned distributions.
+```sh
+clusters_gmm = gmm.predict(data_cleaned)
+```
+4. Cluster Summary
+The number of echoes in each cluster was counted to summarize the classification results.
+```sh
+unique, counts = np.unique(clusters_gmm, return_counts=True)
+class_counts = dict(zip(unique, counts))
+print("Cluster counts:", class_counts)
+```
+Example output: {0: 8880, 1: 3315}
+Note: Cluster 0 contains 8,880 echoes and cluster 1 contains 3,315 echoes. These clusters represent the two categories of echoes, which will be interpreted as leads or sea ice in further analysis.
+
+### Raw Waveform Plots
+
