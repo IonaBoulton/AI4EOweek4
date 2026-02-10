@@ -98,6 +98,9 @@ plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
 plt.title('Gaussian Mixture Model')
 plt.show()
 ```
+<p align="center">
+  <img src="GMM.png" alt="Gaussian Mixture Model Overview" width="600">
+</p>
 
 #### Features Used for Clustering
   `sh
