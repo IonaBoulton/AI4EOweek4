@@ -71,23 +71,23 @@ Unsupervised learning methods are used when labels are not available in the data
 The Gaussian Mixture Model (GMM) is an unsupervised learning algorithm used to identify clusters in data when labels are not available. Unlike K-Means, which assigns points to the nearest cluster center, GMM assumes that each cluster follows a Gaussian (normal) distribution. Each data point has a probabilistic membership in every cluster, which allows GMM to model overlapping clusters and clusters of different shapes and sizes.
 In this assignment, GMM is applied to altimetry echoes to classify sea ice and leads based on features derived from the waveform.
 
-## Why GMM
+### Why GMM
 * Flexible: Can handle clusters with different shapes, sizes, and orientations.
 * Probabilistic: Provides the likelihood that a point belongs to each cluster.
 * More appropriate than K-Means for altimetry echoes, where clusters are not perfectly spherical.
 * Other unsupervised alternatives could include DBSCAN or hierarchical clustering, but GMM offers the best trade-off between interpretability and performance for this dataset.
 
-## Features Used for Clustering
-  ```sh
+#### Features Used for Clustering
+  `sh
  sig_0
-  ```
-  ```sh
+  `
+  `sh
   PP
-  ```
-  ```sh
+  `
+  `sh
  SSD
-  ```
-## GMM Basic Code
+  `
+### GMM Basic Code
 ```sh
  from sklearn.mixture import GaussianMixture
 import matplotlib.pyplot as plt
