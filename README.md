@@ -110,3 +110,19 @@ The clustering model uses waveform-derived features that capture surface reflect
 - `sig_0` — Normalized backscatter amplitude (indicative of surface reflectivity)
 - `PP` — Peakiness of the waveform (reflecting surface roughness)
 - `SSD` — Stack standard deviation (representing variability across repeated echoes)
+
+To evaluate and interpret the Gaussian Mixture Model (GMM) clustering results, scatter plots were generated for each pair of input features (`sig_0` vs `PP`, `sig_0` vs `SSD`, and `PP` vs `SSD`). Plotting feature pairs allows us to visually assess how well the clusters are separated in feature space and to understand which variables contribute most to distinguishing surface types.
+
+<p align="center">
+  <img src="sig_0pp.png" alt="sig_0 vs pp" width="600">
+</p>
+
+<p align="center">
+  <img src="sig_0SSD.png" alt="sig_0 vs SSD" width="600">
+</p>
+
+<p align="center">
+  <img src="PPSSD.png" alt="PP vs SSD" width="600">
+</p>
+
+These plots show that the purple cluster forms a distinct grouping, clearly separated from the yellow cluster across all feature combinations. This separation indicates that the GMM has successfully identified statistically and physically different surface scattering behaviours. The distinct cluster suggests differences in surface reflectivity (`sig_0`), roughness (`PP`), and signal variability (`SSD`), implying that the model is capturing meaningful variation rather than arbitrary groupings.
