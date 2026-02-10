@@ -63,7 +63,7 @@ Below are links to European Space Agency (ESA) pages on Copernicus and Sentinel-
 Unsupervised learning methods are used when labels are not available in the dataset. Instead of relying on pre-defined categories, these algorithms identify patterns or groupings based on the inherent structure of the data. In this assignment, we apply the Gaussian Mixture Model (GMM), which clusters the altimetry echoes based on the distribution of selected features.
 
 <p align="center">
-  <img src="UnsupervisedLearning.png" alt="Unsupervised Learning Overview" width="600">
+  <img src="images/UnsupervisedLearning.png" alt="Unsupervised Learning Overview" width="600">
 </p>
 
 ## Gaussian Mixture Modeling (GMM) of Altimetry Echoes
@@ -99,7 +99,7 @@ plt.title('Gaussian Mixture Model')
 plt.show()
 ```
 <p align="center">
-  <img src="GMM.png" alt="Gaussian Mixture Model Overview" width="600">
+  <img src="images/GMM.png" alt="Gaussian Mixture Model Overview" width="600">
 </p>
 
 This visualization shows the results of a Gaussian Mixture Model (GMM) applied to a 2D dataset. Each colored cluster represents a Gaussian component identified by the model, where points are grouped based on probabilistic membership rather than hard boundaries. The larger grey markers indicate the estimated cluster means, highlighting the center of each Gaussian distribution.
@@ -114,15 +114,15 @@ The clustering model uses waveform-derived features that capture surface reflect
 To evaluate and interpret the Gaussian Mixture Model (GMM) clustering results, scatter plots were generated for each pair of input features (`sig_0` vs `PP`, `sig_0` vs `SSD`, and `PP` vs `SSD`). Plotting feature pairs allows us to visually assess how well the clusters are separated in feature space and to understand which variables contribute most to distinguishing surface types.
 
 <p align="center">
-  <img src="sig_0pp.png" alt="sig_0 vs pp" width="600">
+  <img src="images/sig_0pp.png" alt="sig_0 vs pp" width="600">
 </p>
 
 <p align="center">
-  <img src="sig_0SSD.png" alt="sig_0 vs SSD" width="600">
+  <img src="images/sig_0SSD.png" alt="sig_0 vs SSD" width="600">
 </p>
 
 <p align="center">
-  <img src="PPSSD.png" alt="PP vs SSD" width="600">
+  <img src="images/PPSSD.png" alt="PP vs SSD" width="600">
 </p>
 
 These plots show that the purple cluster forms a distinct grouping, clearly separated from the yellow cluster across all feature combinations. This separation indicates that the GMM has successfully identified statistically and physically different surface scattering behaviours. The distinct cluster suggests differences in surface reflectivity (`sig_0`), roughness (`PP`), and signal variability (`SSD`), implying that the model is capturing meaningful variation rather than arbitrary groupings.
@@ -200,7 +200,7 @@ plt.tight_layout()
 plt.show()
 ```
 <p align="center">
-  <img src="ClusterGMM.png" alt="ClusterGMM" width="600">
+  <img src="images/ClusterGMM.png" alt="ClusterGMM" width="600">
 </p>
 
 ### Results:
@@ -253,11 +253,11 @@ plt.tight_layout()
 plt.show()
 ```
 <p align="center">
-  <img src="Mean.png" alt="Mean" width="600">
+  <img src="images/Mean.png" alt="Mean" width="600">
 </p>
 
 <p align="center">
-  <img src="SD.png" alt="SD" width="600">
+  <img src="images/SD.png" alt="SD" width="600">
 </p>
 
 ### Interpretation:
@@ -300,11 +300,11 @@ plt.legend()
 plt.show()
 ```
 <p align="center">
-  <img src="AlignedMean.png" alt="AM" width="600">
+  <img src="images/AlignedMean.png" alt="AM" width="600">
 </p>
 
 <p align="center">
-  <img src="AlignedSD.png" alt="ASD" width="600">
+  <img src="images/AlignedSD.png" alt="ASD" width="600">
 </p>
 
 ### Interpretation:
@@ -350,7 +350,7 @@ plt.show()
 * After running the code, we can visualize the confusion matrix and examine accuracy, precision, recall, and F1-score for each class
 
 <p align="center">
-  <img src="ConfusionMatrix.png" alt="CM" width="600">
+  <img src="images/ConfusionMatrix.png" alt="CM" width="600">
 </p>
 
 ### Interpretation:
