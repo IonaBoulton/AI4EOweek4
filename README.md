@@ -259,3 +259,100 @@ plt.show()
 <p align="center">
   <img src="SD.png" alt="SD" width="600">
 </p>
+
+### Interpretation:
+The higher mean peaks for leads indicate stronger echoes from open water, while the smooth peaks of sea ice reflect weaker, more diffused echoes. The spiked standard deviation for leads shows that although the peak occurs consistently, there is still variation in echo strength, likely due to small surface disturbances. Sea ice, on the other hand, produces more consistent, low-intensity echoes, resulting in a smoother standard deviation.
+
+### Aligned waveforms
+To compare echoes more accurately, the waveforms are aligned based on a reference point (e.g., the first significant peak). Alignment removes timing variability, allowing clearer comparison of shape and variability between echoes in each cluster.
+```sh
+!pip install msalign
+from msalign import msalign
+import matplotlib.pyplot as plt
+import numpy as np
+
+# --- Set up range and reference bin for alignment ---
+r = np.arange(waves_cleaned.shape[1])  # 0 to 255 for 256 bins
+reference = [100]  # align all waveforms to bin 100
+
+# --- Align waveforms ---
+aligned_sea_ice = msalign(r, waves_cleaned[clusters_gmm==0].T, reference)
+aligned_leads    = msalign(r, waves_cleaned[clusters_gmm==1].T, reference)
+
+# --- Plot mean of aligned waveforms ---
+plt.figure(figsize=(10,5))
+plt.plot(np.mean(aligned_sea_ice, axis=0), label='Sea Ice')
+plt.plot(np.mean(aligned_leads, axis=0), label='Leads')
+plt.title('Mean of ALIGNED Sea Ice and Lead Echoes')
+plt.xlabel('Radar Bin')
+plt.ylabel('Normalized Power')
+plt.legend()
+plt.show()
+
+# --- Plot standard deviation of aligned waveforms ---
+plt.figure(figsize=(10,5))
+plt.plot(np.std(aligned_sea_ice, axis=0), label='Sea Ice')
+plt.plot(np.std(aligned_leads, axis=0), label='Leads')
+plt.title('Standard Deviation of ALIGNED Sea Ice and Lead Echoes')
+plt.xlabel('Radar Bin')
+plt.ylabel('Power SD')
+plt.legend()
+plt.show()
+```
+<p align="center">
+  <img src="AlignedMean.png" alt="AM" width="600">
+</p>
+
+<p align="center">
+  <img src="AlignedSD.png" alt="ASD" width="600">
+</p>
+
+### Interpretation:
+After alignment, both clusters now have smooth, narrow peaks in the mean and standard deviation. The waveforms look very similar, meaning that differences between sea ice and leads are primarily in the timing of the echoes rather than in the overall shape. Alignment has effectively removed timing variability, emphasizing that raw differences observed previously were largely due to when the peaks occurred rather than their shape or amplitude.
+
+## Comparison with ESA Official Data
+To validate the echo classification results, we compare our derived clusters (leads vs sea ice) with the official ESA dataset for the same SAR acquisition. This allows us to assess the accuracy and reliability of our classification method.
+* In the ESA dataset, sea ice = 1 and lead = 2.
+* To make the ESA labels compatible with our predicted labels (0 and 1 from the GMM), we subtract 1 from the ESA labels.
+* We use confusion matrix and classification report from sklearn.metrics to assess the agreement between our predictions and the ESA labels.
+```sh
+flag_cleaned_modified = flag_cleaned - 1
+```
+```sh
+from sklearn.metrics import confusion_matrix, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# --- Adjust ESA labels to match GMM clusters ---
+# ESA: sea ice = 1, lead = 2 → subtract 1 to get sea ice = 0, lead = 1
+true_labels = flag_cleaned - 1
+predicted_gmm = clusters_gmm
+
+# --- Compute confusion matrix ---
+conf_matrix = confusion_matrix(true_labels, predicted_gmm)
+print("Confusion Matrix (numeric):")
+print(conf_matrix)
+
+# --- Classification report ---
+class_report = classification_report(true_labels, predicted_gmm, target_names=['Sea Ice','Lead'])
+print("\nClassification Report:")
+print(class_report)
+
+# --- Plot visual confusion matrix ---
+plt.figure(figsize=(5,4))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Sea Ice','Lead'], yticklabels=['Sea Ice','Lead'])
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Confusion Matrix: GMM vs ESA')
+plt.show()
+```
+* After running the code, we can visualize the confusion matrix and examine accuracy, precision, recall, and F1-score for each class
+
+<p align="center">
+  <img src="ConfusionMatrix.png" alt="CM" width="600">
+</p>
+
+### Interpretation:
+The results show excellent agreement with the ESA official labels. Only 22 sea ice echoes were misclassified as leads, and 24 lead echoes were misclassified as sea ice. This indicates that the GMM classification is highly accurate, successfully distinguishing between leads and sea ice in the dataset.
+
