@@ -2,7 +2,7 @@
 
 ## Assignment Overview
 
-The objective of this task is to classify altimetry echoes into two surface types (sea ice and leads) using a chosen unsupervised learning method (GMM) applied to Sentinel-3 altimetry data. We will process waveform echoes to distinguish between these two classes and compute the average echo shape and standard deviation for each class in order to characterise their statistical and physical differences. Finally we will quantify our echo classifications against the ESA official classification using a confusion matrix.
+The objective of this assignment is to classify altimetry echoes into two surface types (sea ice and leads) using a chosen unsupervised learning method (GMM) applied to Sentinel-3 altimetry data. We will process waveform echoes to distinguish between these two classes and compute the average echo shape and standard deviation for each class in order to characterise their statistical and physical differences. Finally we will quantify our echo classifications against the ESA official classification using a confusion matrix.
 The classification workflow will build upon the provided notebook Chapter1_Unsupervised_Learning_Methods.ipynb.
 
 ## Installations
@@ -51,7 +51,7 @@ Distinguishing sea ice from leads is important for several reasons: monitoring c
 
 Altimetry satellites, such as Sentinel-3, send radar signals toward the Earth's surface and record the reflected signals, known as echoes. These echoes carry detailed information about surface properties: differences in material, roughness, and elevation alter the shape and strength of the returned signal, making it possible to distinguish between surfaces like sea ice and leads.
 
-By analyzing these echoes with unsupervised learning methods like the Gaussian Mixture Model (GMM), we can classify surface types, compute their average echo shapes and standard deviations, and compare the results to ESA official classifications. This provides a robust method for monitoring polar environments using satellite altimetry.
+By analysing these echoes with unsupervised learning methods like the Gaussian Mixture Model (GMM), we can classify surface types, compute their average echo shapes and standard deviations, and compare the results to ESA official classifications. This provides a robust method for monitoring polar environments using satellite altimetry.
 
 Below are links to European Space Agency (ESA) pages on Copernicus and Sentinel-3, as well as further information on the importance of understanding sea ice leads
 * Copernicus - (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Introducing_Copernicus)
@@ -141,7 +141,7 @@ SAR_data = Dataset(path + SAR_file + '/enhanced_measurement.nc')
 ```
 
 #### 2. Model Setup and Fitting
-We first classify the echoes into two categories (leads and sea ice - n_component=2) using a Gaussian Mixture Model (GMM).
+The echoes are first classified into two categories (leads and sea ice - n_component=2) using a Gaussian Mixture Model (GMM).
 ```sh
 gmm = GaussianMixture(n_components=2, random_state=0)
 gmm.fit(data_cleaned)
@@ -218,7 +218,7 @@ plt.show()
 The raw waveform comparison demonstrates that sea ice echoes are more chaotic, while lead echoes show more regularity, which aligns with the physical differences in surface structure between sea ice and open water.
 
 ### Mean and standard deviation
-After examining the raw waveforms, we calculate the mean and standard deviation for each cluster. This allows us to summarize the general shape of the echoes and quantify the variability within each category
+After examining the raw waveforms, the mean and standard deviation is calculated for each cluster. This allows for the general shape of the echoes to be summarised and the variability within each category to be quantified.
 ```sh
 import matplotlib.pyplot as plt
 import numpy as np
@@ -311,7 +311,7 @@ plt.show()
 After alignment, both clusters now have smooth, narrow peaks in the mean and standard deviation. The waveforms look very similar, meaning that differences between sea ice and leads are primarily in the timing of the echoes rather than in the overall shape. Alignment has effectively removed timing variability, emphasizing that raw differences observed previously were largely due to when the peaks occurred rather than their shape or amplitude.
 
 ## Comparison with ESA Official Data
-To validate the echo classification results, we compare our derived clusters (leads vs sea ice) with the official ESA dataset for the same SAR acquisition. This allows us to assess the accuracy and reliability of our classification method.
+To validate the echo classification results,derived clusters are compared (leads vs sea ice) with the official ESA dataset for the same SAR acquisition. This allows for the accuracy and reliability of our classification method to be assessed.
 * In the ESA dataset, sea ice = 1 and lead = 2.
 * To make the ESA labels compatible with our predicted labels (0 and 1 from the GMM), we subtract 1 from the ESA labels.
 * We use confusion matrix and classification report from sklearn.metrics to assess the agreement between our predictions and the ESA labels.
@@ -347,7 +347,7 @@ plt.ylabel('True Label')
 plt.title('Confusion Matrix: GMM vs ESA')
 plt.show()
 ```
-* After running the code, we can visualize the confusion matrix and examine accuracy, precision, recall, and F1-score for each class
+* After running the code, the confusion matrix can be visualised and the accuracy examined, precision, recall, and F1-score for each class
 
 <p align="center">
   <img src="images/ConfusionMatrix.png" alt="CM" width="600">
