@@ -102,6 +102,8 @@ plt.show()
   <img src="GMM.png" alt="Gaussian Mixture Model Overview" width="600">
 </p>
 
+This visualization shows the results of a Gaussian Mixture Model (GMM) applied to a 2D dataset. Each colored cluster represents a Gaussian component identified by the model, where points are grouped based on probabilistic membership rather than hard boundaries. The larger grey markers indicate the estimated cluster means, highlighting the center of each Gaussian distribution.
+
 #### Features Used for Clustering
   `sh
  sig_0
