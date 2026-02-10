@@ -158,8 +158,61 @@ unique, counts = np.unique(clusters_gmm, return_counts=True)
 class_counts = dict(zip(unique, counts))
 print("Cluster counts:", class_counts)
 ```
-Example output: '{0: 8880, 1: 3315}'
+#### Example output: {0: 8880, 1: 3315}
 Note: Cluster 0 contains 8,880 echoes and cluster 1 contains 3,315 echoes. These clusters represent the two categories of echoes, which will be interpreted as leads or sea ice in further analysis.
 
-### Raw Waveform Plots
+## Echo Waveform Analysis: Raw, Mean, and Standard Deviation
+In this section, we analyse the shape and variability of the echoes. This helps us understand how the echoes from leads and sea ice differ, both in their overall waveform and in the variability between individual echoes.
 
+### Raw Waveform Plots
+The raw waveform plots show the first 7 echo waveforms from each cluster (0 for sea ice or 1 for leads). This visualisation allows us to compare the variability and shape of the echoes within each category before any statistical summarisation. Plotting multiple echoes together highlights differences in timing, amplitude, and overall structure.
+```sh
+import matplotlib.pyplot as plt
+
+# Create subplots with 1 row and 2 columns
+fig, axs = plt.subplots(1, 2, figsize=(12, 6))
+
+# Plot first 7 functions where clusters_gmm is equal to 0
+functions_to_plot_0 = waves_cleaned[clusters_gmm == 0][:7]
+for i, function in enumerate(functions_to_plot_0):
+    axs[0].plot(function, label=f'Function {i+1}')
+
+# Plot first 7 functions where clusters_gmm is equal to 1
+functions_to_plot_1 = waves_cleaned[clusters_gmm == 1][:7]
+for i, function in enumerate(functions_to_plot_1):
+    axs[1].plot(function, label=f'Function {i+1}')
+
+# Set titles
+axs[0].set_title('Clusters GMM = 0: Variability in Sea Ice')
+axs[1].set_title('Clusters GMM = 1: Variability in Leads')
+
+# Set axis labels
+for ax in axs:
+    ax.set_xlabel('Radar Bin')
+    ax.set_ylabel('Power')
+
+# Add legends
+axs[0].legend()
+axs[1].legend()
+
+# Adjust layout and show
+plt.tight_layout()
+plt.show()
+```
+<p align="center">
+  <img src="ClusterGMM.png" alt="ClusterGMM" width="600">
+</p>
+
+### Results:
+#### Cluster 0 (Sea Ice):
+* The waveforms are highly variable and chaotic.
+* Peaks occur at different points across the time axis.
+* There is substantial variation between individual echoes, indicating that sea ice
+* echoes are less consistent in shape.
+#### Cluster 1 (Leads):
+* The waveforms are more orderly and consistent.
+* Peaks tend to occur at the same point across all echoes.
+* Some variation in peak height remains, but the overall structure is much more uniform compared to sea ice, reflecting the more coherent nature of lead echoes.
+
+### Interpretation:
+The raw waveform comparison demonstrates that sea ice echoes are more chaotic, while lead echoes show more regularity, which aligns with the physical differences in surface structure between sea ice and open water.
