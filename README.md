@@ -62,4 +62,6 @@ Below are links to European Space Agency (ESA) pages on Copernicus and Sentinel-
 
 Unsupervised learning methods are used when labels are not available in the dataset. Instead of relying on pre-defined categories, these algorithms identify patterns or groupings based on the inherent structure of the data. In this assignment, we apply the Gaussian Mixture Model (GMM), which clusters the altimetry echoes based on the distribution of selected features.
 
+![Unsupervised Learning Overview](UnsupervisedLearning.png)
+
 
