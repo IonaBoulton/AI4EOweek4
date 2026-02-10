@@ -17,22 +17,30 @@ The classification workflow will build upon the provided notebook Chapter1_Unsup
   ```sh
   !pip install rasterio
   ```
+  Reading and handling raster data
   ```sh
   !pip install netCDF4
   ```
+  Reading Sentinel-3 altimetry files in NetCDF format
   ```sh
   !pip install msalign
   ```
+  Pre-processing and aligning waveform echoes.
   ```sh
-  !pip install scikit-learn
+  !pip install scikit-learn (GaussianMixture, confusion_matrix, classification_report)
   ```
+  Provides GMM for unsupervised classification and evaluation metrics
+  
 * Required Python packages usually pre-installed for this assignment:
   ```sh
   numpy
   ```
+  Array operations and numerical computations
   ```sh
   matplotlib.pyplot
   ```
+  Plotting echoes and visualizing results
   ```sh
   scipy.interpolate.interp1d
   ```
+  Interpolating waveform echoes for alignment and averaging
